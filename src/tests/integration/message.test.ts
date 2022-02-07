@@ -8,7 +8,7 @@ import Routes from '../../routes'
 import config from '../../database'
 import { serviceResponse } from '../mocks'
 
-const { NODE_ENV, TTL_MS, LIMIT_MSG } = process.env
+const { NODE_ENV } = process.env
 
 jest.mock('axios', () => ({
   create: () => ({
