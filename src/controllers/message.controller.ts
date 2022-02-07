@@ -9,7 +9,7 @@ class MessageController {
 
   public get = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const userId: string = req.headers.userId as string
+      const userId: string = req.headers.userid as string
 
       if (!userId) throw new HttpException(400, 'userId is required')
 

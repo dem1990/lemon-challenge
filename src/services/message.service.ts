@@ -14,8 +14,6 @@ class MessageService {
   private async getMessage(): Promise<IServiceResponse> {
     const request = await this.request.get(`/off/Tom/Everyone`)
 
-    console.log(request)
-
     if (!request) throw new HttpException(409, 'Invalid request. Error in FOAAS')
     const response: IServiceResponse = request.data
 
@@ -29,9 +27,7 @@ class MessageService {
       where: { userId, ts: MoreThan(since) }
     })) as Array<IMessage>
 
-    console.log(messages)
-
-    if (messages.length > Number(LIMIT_MSG)) throw new HttpException(400, 'Exceeds message limit')
+    if (messages.length >= Number(LIMIT_MSG)) throw new HttpException(400, 'Exceeds message limit')
 
     const serviceMsg: IServiceResponse = await this.getMessage()
 
