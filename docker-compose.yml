@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+
+  lemon-api:
+    build: .
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: public
+    ports:
+      - 3001:3001
+    volumes:
+      - ./:/src
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: public
+    ports: 
+      - 5432:5432
+    volumes:
+      - api-db:/var/lib/postgresql/data
+
+volumes:
+  api-db:

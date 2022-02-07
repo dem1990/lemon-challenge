@@ -1,0 +1,31 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["import"],
+  "extends": ["plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
+  "rules": {
+    "import/order": [
+      "warn",
+      {
+        "pathGroups": [
+          {
+            "pattern": "~/**",
+            "group": "external",
+            "position": "after"
+          }
+        ],
+        "newlines-between": "always"
+      }
+    ],
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": "*", "next": "return" },
+      { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
+      { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"] }
+    ],
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
+  }
+}
